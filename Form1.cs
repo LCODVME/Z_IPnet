@@ -19,7 +19,7 @@ namespace Z_IPnet
 
         private void Form1_Load(object sender, EventArgs e)
         {
-           
+            this.Text = "Z_IPnet - V1.2.0";
         }
 
 
@@ -387,6 +387,33 @@ namespace Z_IPnet
         private void button4_MouseEnter(object sender, EventArgs e)
         {
             textBox19.PasswordChar = '\0';
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            //MessageBox.Show(checkBox1.Checked.ToString());
+            if(checkBox1.Checked == true)
+            {
+                textBox5.Text = "";
+                textBox5.Enabled = false;
+                textBox6.Text = "";
+                textBox6.Enabled = false;
+                textBox7.Text = "";
+                textBox7.Enabled = false;
+                textBox8.Text = "";
+                textBox8.Enabled = false;
+            }
+            else
+            {
+                textBox5.Text = "";
+                textBox5.Enabled = true;
+                textBox6.Text = "";
+                textBox6.Enabled = true;
+                textBox7.Text = "";
+                textBox7.Enabled = true;
+                textBox8.Text = "";
+                textBox8.Enabled = true;
+            }
         }
     }
 }
