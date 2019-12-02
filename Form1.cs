@@ -363,21 +363,6 @@ namespace Z_IPnet
             label40.Text = lora_rate[int.Parse(comboBox2.SelectedItem.ToString()), 2].ToString();
         }
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButton1.Checked == true)
-            {
-                //MessageBox.Show(radioButton1.Text);
-            }
-            else if (radioButton2.Checked == true)
-            {
-                //MessageBox.Show(radioButton2.Text);
-            }
-            else if (radioButton3.Checked == true)
-            {
-                //MessageBox.Show(radioButton3.Text);
-            }
-        }
 
         private void button4_MouseLeave(object sender, EventArgs e)
         {
@@ -389,30 +374,30 @@ namespace Z_IPnet
             textBox19.PasswordChar = '\0';
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void textBox26_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //MessageBox.Show(checkBox1.Checked.ToString());
-            if(checkBox1.Checked == true)
+            if ((e.KeyChar < '0' || e.KeyChar > '9') && e.KeyChar != '\b')
             {
-                textBox5.Text = "";
-                textBox5.Enabled = false;
-                textBox6.Text = "";
-                textBox6.Enabled = false;
-                textBox7.Text = "";
-                textBox7.Enabled = false;
-                textBox8.Text = "";
-                textBox8.Enabled = false;
+                e.Handled = true;
             }
-            else
+        }
+
+        private void textBox18_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar < '0' || e.KeyChar > '9') && 
+                (e.KeyChar < 'a' || e.KeyChar > 'f') && 
+                (e.KeyChar < 'A' || e.KeyChar > 'F') && 
+                 e.KeyChar != '\b')
             {
-                textBox5.Text = "";
-                textBox5.Enabled = true;
-                textBox6.Text = "";
-                textBox6.Enabled = true;
-                textBox7.Text = "";
-                textBox7.Enabled = true;
-                textBox8.Text = "";
-                textBox8.Enabled = true;
+                e.Handled = true;
+            }
+        }
+
+        private void textBox25_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == ' ')
+            {
+                e.Handled = true;
             }
         }
     }
