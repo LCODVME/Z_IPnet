@@ -737,5 +737,10 @@ namespace Z_IPnet
                 e.Handled = true;
             }
         }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }
