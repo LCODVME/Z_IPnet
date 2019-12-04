@@ -197,7 +197,7 @@
             this.textBox1.Size = new System.Drawing.Size(35, 20);
             this.textBox1.TabIndex = 57;
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
@@ -258,6 +258,7 @@
             this.button2.TabIndex = 70;
             this.button2.Text = "读取配置";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -268,6 +269,7 @@
             this.button3.TabIndex = 72;
             this.button3.Text = "写入配置";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // textBox8
             // 
@@ -1043,9 +1045,9 @@
             this.label45.ForeColor = System.Drawing.Color.Red;
             this.label45.Location = new System.Drawing.Point(350, 326);
             this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(385, 57);
+            this.label45.Size = new System.Drawing.Size(387, 76);
             this.label45.TabIndex = 144;
-            this.label45.Text = "注：连接设备时如果不知道设备的IP地址，\r\n可使用广播地址代替\r\n(如：192.168.9.255；192.168.255.255)。";
+            this.label45.Text = "注：连接设备时如果不知道设备的IP地址，\r\n可使用广播地址代替(如：192.168.9.255)。\r\n  在配置时建议先点击读取配置，在已有配\r\n置上更改。";
             // 
             // Form1
             // 
