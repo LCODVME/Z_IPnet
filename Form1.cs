@@ -19,12 +19,6 @@ namespace Z_IPnet
 {
     public partial class Form1 : Form
     {
-        public Form1()
-        {
-            InitializeComponent();
-            Control.CheckForIllegalCrossThreadCalls = false;
-        }
-
         const int CONNECT_REQUEST_CODE = 3000;
         const int CONNECT_RESOPNCE_CODE = 4000;
         const int READ_CONFIG_REQUEST_CODE = 3001;
@@ -36,7 +30,8 @@ namespace Z_IPnet
         const int HEART_BEAT_CODE = 3005;
         const int HEART_BEAT_RESPONCE = 4005;
         const int FACTORY_SETTING_CODE = 3006;
-        
+
+
         UdpClient udp_client;
         Thread udpRcvThread;
         IPEndPoint remotePoint;
@@ -45,13 +40,18 @@ namespace Z_IPnet
         static int Connect_state = 0;  //0:未连接，1：连接中；，2：已连接
         static int heartBeatCnt = 0;
         System.Timers.Timer heartBeat = new System.Timers.Timer(3000);
-        System.Timers.Timer retransmit = new System.Timers.Timer(2000);
+        System.Timers.Timer retransmit = new System.Timers.Timer(1000);
         public delegate void delegateCall();
         delegateCall udpRetransmit;
         delegateCall udpRetransmit_old;
-        private void Form1_Load(object sender, EventArgs e)
+
+        public Form1()
         {
-            this.Text = "Z_IPnet - V1.2.0";
+            InitializeComponent();
+            
+            Control.CheckForIllegalCrossThreadCalls = false; //用于跨线程调用窗体
+            label45.Text = "";
+            label52.Text = "";
             udp_client = new UdpClient();
             udpRcvThread = new Thread(receiveProcess);
             udpRcvThread.Start();
@@ -65,14 +65,18 @@ namespace Z_IPnet
             retransmit.AutoReset = true;
             retransmit.Enabled = true;
             retransmit.Stop();
-
+        }
+        
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            this.Text = "Z_IPnet - V1.2.0";
         }
 
         private void heartBeatSend(object source, System.Timers.ElapsedEventArgs e)
         {
             heartBeatSend();
             
-            if (++heartBeatCnt > 3)
+            if (++heartBeatCnt > 2)
             {
                 heartBeat.Stop();
                 Connect_state = 0;
@@ -82,6 +86,8 @@ namespace Z_IPnet
                 textBox2.Enabled = true;
                 textBox3.Enabled = true;
                 textBox4.Enabled = true;
+                label45.Text = "";
+                label52.Text = "连接断开！";
                 MessageBox.Show("连接断开");
             }
         }
@@ -102,6 +108,9 @@ namespace Z_IPnet
             {
                 udpRetransmit_old = null;
                 udpRetransmit = null;
+                label45.Text = "";
+                label52.Text = "操作失败！";
+                MessageBox.Show("失败！");
             }
             else if(udpRetransmit_old != udpRetransmit)
             {
@@ -189,6 +198,14 @@ namespace Z_IPnet
                 MessageBox.Show("配置填写错误，请检查改正");
             }
         }
+        private void rebootDevice()
+        {
+            byte[] sendBuf;
+            JObject root = new JObject();
+            root.Add("code", REBOOT_CODE);
+            sendBuf = Encoding.Default.GetBytes(root.ToString(Newtonsoft.Json.Formatting.None, null));
+            udp_client.Send(sendBuf, sendBuf.Length, remotePoint);
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -213,6 +230,8 @@ namespace Z_IPnet
                 }
                 else
                 {
+                    label45.Text = "连接设备。。。";
+                    label52.Text = "";
                     button1.Text = "取消";
                     label4.Text = "正在连接";
                     connectRequest();
@@ -233,6 +252,8 @@ namespace Z_IPnet
         {
             if (Connect_state == 2)
             {
+                label45.Text = "获取配置。。。";
+                label52.Text = "";
                 readConfigRequest();
             }
             else
@@ -244,6 +265,8 @@ namespace Z_IPnet
         {
             if (Connect_state == 2)
             {
+                label45.Text = "写入配置。。。";
+                label52.Text = "";
                 writeConfigRequest();
             }
             else
@@ -251,6 +274,58 @@ namespace Z_IPnet
                 MessageBox.Show("未连接，请先连接设备");
             }
         }
+        private void button5_Click(object sender, EventArgs e)
+        {
+            textBox25.Text ="";
+            textBox20.Text ="";
+            comboBox1.Text ="";
+            comboBox3.Text ="";
+            comboBox2.Text ="";
+            label37.Text = "";
+            label38.Text = "";
+            label40.Text = "";
+            textBox5.Text = "";
+            textBox6.Text = "";
+            textBox7.Text = "";
+            textBox8.Text = "";
+            textBox10.Text ="";
+            textBox11.Text ="";
+            textBox12.Text ="";
+            textBox13.Text ="";
+            textBox14.Text ="";
+            textBox15.Text ="";
+            textBox16.Text ="";
+            textBox17.Text ="";
+            textBox18.Text ="";
+            textBox21.Text ="";
+            textBox22.Text ="";
+            textBox23.Text ="";
+            textBox24.Text ="";
+            textBox26.Text ="";
+            textBox9.Text = "";
+            textBox19.Text = "";
+        }
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (Connect_state == 2)
+            {
+                rebootDevice();
+                heartBeat.Stop();
+                retransmit.Stop();
+                Connect_state = 0;
+                button1.Text = "连接";
+                label4.Text = "未连接";
+                textBox1.Enabled = true;
+                textBox2.Enabled = true;
+                textBox3.Enabled = true;
+                textBox4.Enabled = true;
+            }
+            else
+            {
+                MessageBox.Show("未连接，请先连接设备");
+            }
+        }
+
         private string parseJsonMac(string mac)
         {
             char[] buf = mac.ToCharArray();
@@ -302,16 +377,18 @@ namespace Z_IPnet
                         switch(int.Parse(code))
                         {
                             case CONNECT_RESOPNCE_CODE:
-                                {
+                                {   
                                     if (Connect_state != 1) break;
                                     button1.Text = "断开连接";
                                     label4.Text = "已连接";
+                                    label45.Text = "连接成功！";
+                                    label52.Text = "";
                                     Connect_state = 2;  //连接状态为连接
                                     heartBeatCnt = 0;
                                     /* start heart beat timer */
                                     heartBeat.Start();
                                     /* stop retransmit timer */
-                                    retransmit.Stop();
+                                   // retransmit.Stop();
                                     udpRetransmit = null;
                                     string ip = root["ip"].ToString();
                                     remoteIP = IPAddress.Parse(ip);
@@ -366,12 +443,16 @@ namespace Z_IPnet
                                     textBox9.Text = user;
                                     string password = root["server"]["password"].ToString();
                                     textBox19.Text = password;
+                                    label45.Text = "配置读取成功！";
+                                    label52.Text = "";
                                 }
                                 break;
                             case WRITE_CONFIG_RESPONCE_CODE:
                                 retransmit.Stop();
                                 udpRetransmit = null;
                                 heartBeatCnt = 0;
+                                label45.Text = "配置写入成功！";
+                                label52.Text = "";
                                 break;
                             case HEART_BEAT_RESPONCE:
                                 heartBeatCnt = 0;
@@ -735,6 +816,31 @@ namespace Z_IPnet
             if(e.KeyChar == ' ')
             {
                 e.Handled = true;
+            }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if(checkBox1.Checked == true)
+            {
+                textBox27.Enabled = true;
+                textBox31.Enabled = true;
+                textBox32.Enabled = true;
+                textBox33.Enabled = true;
+                textBox34.Enabled = true;
+            }
+            else
+            {
+                textBox27.Enabled = false;
+                textBox31.Enabled = false;
+                textBox32.Enabled = false;
+                textBox33.Enabled = false;
+                textBox34.Enabled = false;
             }
         }
     }
