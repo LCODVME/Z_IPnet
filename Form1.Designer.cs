@@ -105,7 +105,22 @@
             this.textBox26 = new System.Windows.Forms.TextBox();
             this.textBox25 = new System.Windows.Forms.TextBox();
             this.label44 = new System.Windows.Forms.Label();
+            this.label46 = new System.Windows.Forms.Label();
+            this.textBox27 = new System.Windows.Forms.TextBox();
+            this.label47 = new System.Windows.Forms.Label();
+            this.textBox34 = new System.Windows.Forms.TextBox();
+            this.label48 = new System.Windows.Forms.Label();
+            this.textBox33 = new System.Windows.Forms.TextBox();
+            this.label49 = new System.Windows.Forms.Label();
+            this.textBox32 = new System.Windows.Forms.TextBox();
+            this.label50 = new System.Windows.Forms.Label();
+            this.textBox31 = new System.Windows.Forms.TextBox();
+            this.label51 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.label45 = new System.Windows.Forms.Label();
+            this.label52 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBox4
@@ -717,6 +732,7 @@
             // textBox9
             // 
             this.textBox9.Location = new System.Drawing.Point(83, 376);
+            this.textBox9.MaxLength = 49;
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(182, 21);
             this.textBox9.TabIndex = 109;
@@ -736,6 +752,7 @@
             // textBox19
             // 
             this.textBox19.Location = new System.Drawing.Point(83, 413);
+            this.textBox19.MaxLength = 49;
             this.textBox19.Name = "textBox19";
             this.textBox19.PasswordChar = '*';
             this.textBox19.Size = new System.Drawing.Size(182, 21);
@@ -813,6 +830,7 @@
             // 
             this.textBox20.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.textBox20.Location = new System.Drawing.Point(447, 131);
+            this.textBox20.MaxLength = 3;
             this.textBox20.Name = "textBox20";
             this.textBox20.Size = new System.Drawing.Size(78, 21);
             this.textBox20.TabIndex = 118;
@@ -1022,6 +1040,7 @@
             // textBox25
             // 
             this.textBox25.Location = new System.Drawing.Point(401, 256);
+            this.textBox25.MaxLength = 49;
             this.textBox25.Name = "textBox25";
             this.textBox25.Size = new System.Drawing.Size(160, 21);
             this.textBox25.TabIndex = 142;
@@ -1038,23 +1057,217 @@
             this.label44.TabIndex = 143;
             this.label44.Text = "P";
             // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label46.Location = new System.Drawing.Point(678, 340);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(16, 16);
+            this.label46.TabIndex = 154;
+            this.label46.Text = "P";
+            // 
+            // textBox27
+            // 
+            this.textBox27.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBox27.Location = new System.Drawing.Point(694, 337);
+            this.textBox27.MaxLength = 5;
+            this.textBox27.Multiline = true;
+            this.textBox27.Name = "textBox27";
+            this.textBox27.Size = new System.Drawing.Size(46, 20);
+            this.textBox27.TabIndex = 153;
+            this.textBox27.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox26_KeyPress);
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label47.Location = new System.Drawing.Point(452, 339);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(24, 16);
+            this.label47.TabIndex = 152;
+            this.label47.Text = "IP";
+            // 
+            // textBox34
+            // 
+            this.textBox34.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox34.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox34.Location = new System.Drawing.Point(638, 336);
+            this.textBox34.MaxLength = 3;
+            this.textBox34.Multiline = true;
+            this.textBox34.Name = "textBox34";
+            this.textBox34.Size = new System.Drawing.Size(35, 20);
+            this.textBox34.TabIndex = 151;
+            this.textBox34.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox34.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.textBox34.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox4_KeyDown);
+            this.textBox34.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox4_KeyPress);
+            // 
+            // label48
+            // 
+            this.label48.BackColor = System.Drawing.SystemColors.Window;
+            this.label48.Font = new System.Drawing.Font("宋体", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label48.Location = new System.Drawing.Point(624, 336);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(17, 20);
+            this.label48.TabIndex = 150;
+            this.label48.Text = ".";
+            this.label48.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBox33
+            // 
+            this.textBox33.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox33.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox33.Location = new System.Drawing.Point(589, 336);
+            this.textBox33.MaxLength = 3;
+            this.textBox33.Multiline = true;
+            this.textBox33.Name = "textBox33";
+            this.textBox33.Size = new System.Drawing.Size(35, 20);
+            this.textBox33.TabIndex = 149;
+            this.textBox33.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox33.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.textBox33.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox3_KeyDown);
+            this.textBox33.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox3_KeyPress);
+            // 
+            // label49
+            // 
+            this.label49.BackColor = System.Drawing.SystemColors.Window;
+            this.label49.Font = new System.Drawing.Font("宋体", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label49.Location = new System.Drawing.Point(575, 336);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(17, 20);
+            this.label49.TabIndex = 148;
+            this.label49.Text = ".";
+            this.label49.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBox32
+            // 
+            this.textBox32.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox32.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox32.Location = new System.Drawing.Point(540, 336);
+            this.textBox32.MaxLength = 3;
+            this.textBox32.Multiline = true;
+            this.textBox32.Name = "textBox32";
+            this.textBox32.Size = new System.Drawing.Size(35, 20);
+            this.textBox32.TabIndex = 147;
+            this.textBox32.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox32.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.textBox32.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox2_KeyDown);
+            this.textBox32.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
+            // 
+            // label50
+            // 
+            this.label50.BackColor = System.Drawing.SystemColors.Window;
+            this.label50.Font = new System.Drawing.Font("宋体", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label50.Location = new System.Drawing.Point(526, 336);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(17, 20);
+            this.label50.TabIndex = 146;
+            this.label50.Text = ".";
+            this.label50.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBox31
+            // 
+            this.textBox31.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox31.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox31.Location = new System.Drawing.Point(491, 336);
+            this.textBox31.MaxLength = 3;
+            this.textBox31.Multiline = true;
+            this.textBox31.Name = "textBox31";
+            this.textBox31.Size = new System.Drawing.Size(35, 20);
+            this.textBox31.TabIndex = 145;
+            this.textBox31.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox31.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox31.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            this.textBox31.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.Font = new System.Drawing.Font("黑体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label51.Location = new System.Drawing.Point(543, 299);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(49, 19);
+            this.label51.TabIndex = 155;
+            this.label51.Text = "其他";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.checkBox1.Location = new System.Drawing.Point(378, 338);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(75, 20);
+            this.checkBox1.TabIndex = 156;
+            this.checkBox1.Text = "评价屏";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // button5
+            // 
+            this.button5.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button5.Location = new System.Drawing.Point(430, 394);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(84, 27);
+            this.button5.TabIndex = 157;
+            this.button5.Text = "清除";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button7
+            // 
+            this.button7.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button7.Location = new System.Drawing.Point(610, 394);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(84, 27);
+            this.button7.TabIndex = 159;
+            this.button7.Text = "重启设备";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // label45
             // 
             this.label45.AutoSize = true;
-            this.label45.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label45.ForeColor = System.Drawing.Color.Red;
-            this.label45.Location = new System.Drawing.Point(350, 326);
+            this.label45.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label45.ForeColor = System.Drawing.Color.Green;
+            this.label45.Location = new System.Drawing.Point(466, 9);
             this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(387, 76);
-            this.label45.TabIndex = 144;
-            this.label45.Text = "注：连接设备时如果不知道设备的IP地址，\r\n可使用广播地址代替(如：192.168.9.255)。\r\n  在配置时建议先点击读取配置，在已有配\r\n置上更改。";
+            this.label45.Size = new System.Drawing.Size(64, 16);
+            this.label45.TabIndex = 160;
+            this.label45.Text = "label45";
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label52.ForeColor = System.Drawing.Color.Red;
+            this.label52.Location = new System.Drawing.Point(466, 9);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(64, 16);
+            this.label52.TabIndex = 161;
+            this.label52.Text = "label52";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label52);
             this.Controls.Add(this.label45);
+            this.Controls.Add(this.button7);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.label51);
+            this.Controls.Add(this.label46);
+            this.Controls.Add(this.textBox27);
+            this.Controls.Add(this.label47);
+            this.Controls.Add(this.textBox34);
+            this.Controls.Add(this.label48);
+            this.Controls.Add(this.textBox33);
+            this.Controls.Add(this.label49);
+            this.Controls.Add(this.textBox32);
+            this.Controls.Add(this.label50);
+            this.Controls.Add(this.textBox31);
             this.Controls.Add(this.label44);
             this.Controls.Add(this.textBox25);
             this.Controls.Add(this.textBox26);
@@ -1220,7 +1433,22 @@
         private System.Windows.Forms.TextBox textBox26;
         private System.Windows.Forms.TextBox textBox25;
         private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.TextBox textBox27;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.TextBox textBox34;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.TextBox textBox33;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.TextBox textBox32;
+        private System.Windows.Forms.Label label50;
+        private System.Windows.Forms.TextBox textBox31;
+        private System.Windows.Forms.Label label51;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.Label label52;
     }
 }
 
