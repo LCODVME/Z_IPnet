@@ -219,7 +219,8 @@ namespace Z_IPnet
                 {
                     disConnect();
                     heartBeat.Stop();
-                    retransmit.Stop();
+                    //retransmit.Stop();
+                    udpRetransmit = null;
                     Connect_state = 0;
                     button1.Text = "连接";
                     label4.Text = "未连接";
@@ -278,12 +279,12 @@ namespace Z_IPnet
         {
             textBox25.Text ="";
             textBox20.Text ="";
-            comboBox1.Text ="";
-            comboBox3.Text ="";
-            comboBox2.Text ="";
-            label37.Text = "";
-            label38.Text = "";
-            label40.Text = "";
+            comboBox1.Text =" ";
+            comboBox3.Text =" ";
+            comboBox2.Text =" ";
+            //label37.Text = "";
+            //label38.Text = "";
+            //label40.Text = "";
             textBox5.Text = "";
             textBox6.Text = "";
             textBox7.Text = "";
@@ -776,9 +777,18 @@ namespace Z_IPnet
                                            { 9, 7, 1 } };
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            label37.Text = lora_rate[int.Parse(comboBox2.SelectedItem.ToString()), 0].ToString();
-            label38.Text = lora_rate[int.Parse(comboBox2.SelectedItem.ToString()), 1].ToString();
-            label40.Text = lora_rate[int.Parse(comboBox2.SelectedItem.ToString()), 2].ToString();
+            try
+            {
+                label37.Text = lora_rate[int.Parse(comboBox2.SelectedItem.ToString()), 0].ToString();
+                label38.Text = lora_rate[int.Parse(comboBox2.SelectedItem.ToString()), 1].ToString();
+                label40.Text = lora_rate[int.Parse(comboBox2.SelectedItem.ToString()), 2].ToString();
+            }
+            catch
+            {
+                label37.Text = "";
+                label38.Text = "";
+                label40.Text = "";
+            }
         }
 
 
@@ -822,26 +832,6 @@ namespace Z_IPnet
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             Environment.Exit(0);
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            if(checkBox1.Checked == true)
-            {
-                textBox27.Enabled = true;
-                textBox31.Enabled = true;
-                textBox32.Enabled = true;
-                textBox33.Enabled = true;
-                textBox34.Enabled = true;
-            }
-            else
-            {
-                textBox27.Enabled = false;
-                textBox31.Enabled = false;
-                textBox32.Enabled = false;
-                textBox33.Enabled = false;
-                textBox34.Enabled = false;
-            }
         }
     }
 }
