@@ -69,7 +69,7 @@ namespace Z_IPnet
         
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.Text = "阳辰科技网关配置工具V1.2.0";
+            this.Text = "配置工具V1.2.0";
         }
 
         private void heartBeatSend(object source, System.Timers.ElapsedEventArgs e)
