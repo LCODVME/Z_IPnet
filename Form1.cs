@@ -50,7 +50,7 @@ namespace Z_IPnet
             InitializeComponent();
             
             Control.CheckForIllegalCrossThreadCalls = false; //用于跨线程调用窗体
-            label45.Text = "";
+            label45.Text = "设备未连接，输入正确IP地址连接设备。";
             label52.Text = "";
             udp_client = new UdpClient();
             udpRcvThread = new Thread(receiveProcess);
@@ -69,7 +69,7 @@ namespace Z_IPnet
         
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.Text = "Z_IPnet - V1.2.0";
+            this.Text = "阳辰科技网关配置工具V1.2.0";
         }
 
         private void heartBeatSend(object source, System.Timers.ElapsedEventArgs e)
@@ -82,10 +82,10 @@ namespace Z_IPnet
                 Connect_state = 0;
                 button1.Text = "连接";
                 label4.Text = "未连接";
-                textBox1.Enabled = true;
-                textBox2.Enabled = true;
-                textBox3.Enabled = true;
-                textBox4.Enabled = true;
+                textBox1.ReadOnly = false;
+                textBox2.ReadOnly = false;
+                textBox3.ReadOnly = false;
+                textBox4.ReadOnly = false;
                 label45.Text = "";
                 label52.Text = "连接断开！";
                 MessageBox.Show("连接断开");
@@ -195,7 +195,7 @@ namespace Z_IPnet
             }
             catch
             {
-                MessageBox.Show("配置填写错误，请检查改正");
+                MessageBox.Show("配置填写错误，请检查改正！");
             }
         }
         private void rebootDevice()
@@ -210,11 +210,6 @@ namespace Z_IPnet
         {
             try
             {
-                
-                string dstIP = String.Format("{0}.{1}.{2}.{3}", textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text);
-                remoteIP = IPAddress.Parse(dstIP);
-                remotePoint = new IPEndPoint(remoteIP, remotePort);
-
                 if (Connect_state > 0)
                 {
                     disConnect();
@@ -224,28 +219,34 @@ namespace Z_IPnet
                     Connect_state = 0;
                     button1.Text = "连接";
                     label4.Text = "未连接";
-                    textBox1.Enabled = true;
-                    textBox2.Enabled = true;
-                    textBox3.Enabled = true;
-                    textBox4.Enabled = true;
+                    label45.Text = "设备未连接，输入正确IP地址连接设备。";
+                    label52.Text = "";
+                    textBox1.ReadOnly = false;
+                    textBox2.ReadOnly = false;
+                    textBox3.ReadOnly = false;
+                    textBox4.ReadOnly = false;
                 }
                 else
                 {
+                    string dstIP = String.Format("{0}.{1}.{2}.{3}", textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text);
+                    remoteIP = IPAddress.Parse(dstIP);
+                    remotePoint = new IPEndPoint(remoteIP, remotePort);
+
                     label45.Text = "连接设备。。。";
                     label52.Text = "";
                     button1.Text = "取消";
                     label4.Text = "正在连接";
                     connectRequest();
-                    textBox1.Enabled = false;
-                    textBox2.Enabled = false;
-                    textBox3.Enabled = false;
-                    textBox4.Enabled = false;
+                    textBox1.ReadOnly = true;
+                    textBox2.ReadOnly = true;
+                    textBox3.ReadOnly = true;
+                    textBox4.ReadOnly = true;
                     Connect_state = 1;
                 }
             }
             catch
             {
-                MessageBox.Show("地址无效，请输入正确的IP地址");
+                MessageBox.Show("地址无效，请输入正确的IP地址！");
                 textBox1.Focus();
             }
         }
@@ -259,7 +260,7 @@ namespace Z_IPnet
             }
             else
             {
-                MessageBox.Show("未连接，请先连接设备");
+                MessageBox.Show("未连接，请先连接设备！");
             }
         }
         private void button3_Click(object sender, EventArgs e)
@@ -272,7 +273,7 @@ namespace Z_IPnet
             }
             else
             {
-                MessageBox.Show("未连接，请先连接设备");
+                MessageBox.Show("未连接，请先连接设备！");
             }
         }
         private void button5_Click(object sender, EventArgs e)
@@ -316,14 +317,16 @@ namespace Z_IPnet
                 Connect_state = 0;
                 button1.Text = "连接";
                 label4.Text = "未连接";
-                textBox1.Enabled = true;
-                textBox2.Enabled = true;
-                textBox3.Enabled = true;
-                textBox4.Enabled = true;
+                label45.Text = "设备未连接，输入正确IP地址连接设备。";
+                label52.Text = "";
+                textBox1.ReadOnly = false;
+                textBox2.ReadOnly = false;
+                textBox3.ReadOnly = false;
+                textBox4.ReadOnly = false;
             }
             else
             {
-                MessageBox.Show("未连接，请先连接设备");
+                MessageBox.Show("未连接，请先连接设备！");
             }
         }
 
@@ -394,7 +397,7 @@ namespace Z_IPnet
                                     string ip = root["ip"].ToString();
                                     remoteIP = IPAddress.Parse(ip);
                                     remotePoint = new IPEndPoint(remoteIP, remotePort);
-                                    textBox4.Text = remoteIP.GetAddressBytes()[4].ToString();
+                                    textBox4.Text = remoteIP.GetAddressBytes()[3].ToString();
                                 }
                                 break;
                             case READ_CONFIG_RESPONCE_CODE:
@@ -452,7 +455,7 @@ namespace Z_IPnet
                                 retransmit.Stop();
                                 udpRetransmit = null;
                                 heartBeatCnt = 0;
-                                label45.Text = "配置写入成功！";
+                                label45.Text = "配置写入成功，设备重启后生效！";
                                 label52.Text = "";
                                 break;
                             case HEART_BEAT_RESPONCE:
@@ -464,7 +467,7 @@ namespace Z_IPnet
                 }
                 catch
                 {
-                   
+                    
                 }
                 
             }
